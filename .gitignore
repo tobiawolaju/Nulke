@@ -67,6 +67,7 @@ Frontend/.vite
 Frontend/.next
 Frontend/out
 
+
 # Ignore frontend env
 Frontend/.env
 

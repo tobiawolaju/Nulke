@@ -213,8 +213,48 @@ You should see:
 # ✅ **📈 Optional Frontend Dashboard**
 
 ```
-Frontend/
-│ index.html
-│ style.css
-│ app.js
+✅ 📈 Frontend Dashboard (Vite + React)
+
+The frontend is powered by Vite + React for a fast development experience and modern UI.
+It provides a dashboard for monitoring:
+
+✅ Bot status
+✅ Wallet balance
+✅ Recent trades
+✅ Liquidity info
+✅ Token interactions
+
+✅ 📁 Frontend Structure
+Frontend/                    # Vite + React dashboard
+│   package.json
+│   vite.config.js
+│   index.html
+│
+├── src/
+│   │   main.jsx
+│   │   App.jsx
+│   │
+│   ├── components/
+│   │       Header.jsx
+│   │       StatusCard.jsx
+│   │       WalletInfo.jsx
+│   │       TradesTable.jsx
+│   │
+│   └── assets/
+│
+└── public/
+
+✅ Install Frontend Dependencies
+cd MonadTradingBot/Frontend
+npm install
+
+✅ Start Development Server
+npm run dev
+
+
+You should see something like:
+
+VITE v5.x  ready in 200ms
+Local:   http://localhost:5173/
+
 ```

@@ -1,104 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nulke Quant</title>
-    <style>
-        body {
-            background-color: #6F58FE;
-            color: #FFFFFF;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            padding: 40px;
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        .wallet-address {
-            background-color: #FFFFFF;
-            color: #6F58FE;
-            padding: 15px;
-            border-radius: 5px;
-            font-size: 1.1em;
-            font-weight: bold;
-            word-wrap: break-word;
-            margin-bottom: 30px;
-            border: 2px dashed #FFFFFF;
-        }
-        .live-update {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-        .cta-button {
-            background-color: #FFFFFF;
-            color: #6F58FE;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .cta-button:hover {
-            background-color: #DDDDDD;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Nulke Quant</h1>
-        <p>Welcome to the future of fair meme coin trading on the Monad blockchain. Our high-frequency trading bot is engineered to shield your investments from market manipulation by whales and developers. By contributing to the bot's liquidity pool, you receive a share of the profits generated, proportional to your investment.</p>
-        <p>Investments are open at the beginning of each month, with profits and capital returned at the end of the monthly cycle.</p>
-        
-        <h2>Bot Contract Address</h2>
-        <div class="wallet-address">
-            0xAbCdEfGhIjKlMnOpQrStUvWxYz1234567890AbCdEfGh
-        </div>
-
-        <div class="live-update">
-            Investor Slots Filled: <span id="slots-filled">2</span>/100
-        </div>
-
-        <p>To participate, send your funds to the bot contract address above. Your address will be automatically recorded for profit distribution at the end of the month.</p>
-
-    </div>
-
-    <script>
-        // This is a placeholder for a live update.
-        // In a real application, you would fetch this data from a server or blockchain.
-        const slotsFilledElement = document.getElementById('slots-filled');
-        let currentSlots = 2;
-        const maxSlots = 100;
-
-        // You can simulate updates with setInterval
-        // setInterval(() => {
-        //     if (currentSlots < maxSlots) {
-        //         currentSlots++;
-        //         slotsFilledElement.textContent = currentSlots;
-        //     }
-        // }, 5000); // Update every 5 seconds for demonstration
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

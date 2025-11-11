@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "token": {
+      "name": "PEPE",
+      "logo": "https://i.imgur.com/5Jx8q6B.png"
+    },
+    "type": "Buy",
+    "amount": 12000,
+    "pnl_percent": 23,
+    "pnl_usd": 1840.52,
+    "tx_hash": "0x9ab3cdef45678901234567890123456789012345678901234567890121f9",
+    "timestamp": "5 mins ago"
+  },
+  {
+    "id": 2,
+    "token": {
+      "name": "DOGE5000",
+      "logo": "https://i.imgur.com/bxxU7QE.png"
+    },
+    "type": "Sell",
+    "amount": 2400,
+    "pnl_percent": -50,
+    "pnl_usd": -120.15,
+    "tx_hash": "0x44deabcdef123456789012345678901234567890123456789012345aa03",
+    "timestamp": "19 mins ago"
+  },
+  {
+    "id": 3,
+    "token": {
+      "name": "MONADCAT",
+      "logo": "https://i.imgur.com/Fz4H1sD.png"
+    },
+    "type": "Buy",
+    "amount": 8700,
+    "pnl_percent": 12,
+    "pnl_usd": 45.88,
+    "tx_hash": "0xcd12efab345678901234567890123456789012345678901234567893af9",
+    "timestamp": "1 hour ago"
+  }
+]
