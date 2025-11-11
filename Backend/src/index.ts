@@ -1,44 +1,52 @@
-import "dotenv/config";
-import { getGasOptions } from "./gas/gasManager";
-import { getPrice } from "./utils/prices";
-import { buyToken, sellToken } from "./services/trades";
-import { logger } from "./utils/logger";
 
-const SPEED = process.env.SPEED || "FAST";
-const BUY_THRESHOLD = Number(process.env.BUY_THRESHOLD || "0.02");
-const SELL_THRESHOLD = Number(process.env.SELL_THRESHOLD || "0.03");
-const POLL_MS = Number(process.env.POLL_MS || "5000");
 
-async function main() {
-  logger.info(`🚀 Monad Trading Bot Started — SPEED MODE: ${SPEED}`);
+const provider = require('./services/provider');
+const { triggerSandwichAttack } = require('./services/executor');
+const logger = require('./utils/logger');
+const { ethers } = require('ethers');
 
-  let referencePrice = await getPrice();
-  logger.info(`📌 Reference Price: ${referencePrice}`);
+// Address for Uniswap V2 Router, a common target
+const UNISWAP_V2_ROUTER = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
 
-  setInterval(async () => {
+// A simplified ABI for decoding Uniswap swap functions
+const UNISWAP_ABI = [
+    "function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)"
+];
+const uniswapInterface = new ethers.Interface(UNISWAP_ABI);
+
+logger.info("Red Team Bot starting up...");
+logger.info("Monitoring mempool for potential targets...");
+
+provider.on("pending", async (txHash) => {
     try {
-      const price = await getPrice();
-      const change = (price - referencePrice) / referencePrice;
+        const tx = await provider.getTransaction(txHash);
 
-      logger.info(`💹 Current: ${price} | Change: ${(change * 100).toFixed(3)}%`);
+        // --- FILTERING LOGIC ---
+        if (tx && tx.to === UNISWAP_V2_ROUTER) {
+            
+            // Decode the transaction data
+            const decodedData = uniswapInterface.parseTransaction({ data: tx.data });
 
-      if (change <= -BUY_THRESHOLD) {
-        logger.warn("🟢 BUY signal detected!");
-        const gas = await getGasOptions(SPEED);
-        await buyToken("1", gas); // buy 1 TOKEN_A
-        referencePrice = price;
-      }
+            if (decodedData && decodedData.name === "swapExactTokensForETH") {
+                const [amountIn, amountOutMin, path] = decodedData.args;
+                const victimToken = path[0];
 
-      if (change >= SELL_THRESHOLD) {
-        logger.warn("🔴 SELL signal detected!");
-        const gas = await getGasOptions(SPEED);
-        await sellToken("1", gas);
-        referencePrice = price;
-      }
+                logger.warn(`Potential Target Found!`);
+                logger.info(`  - TX Hash: ${tx.hash}`);
+                logger.info(`  - Victim Token: ${victimToken}`);
+                logger.info(`  - Amount In: ${ethers.formatUnits(amountIn, 18)}`); // Assumes 18 decimals
+
+                // --- ATTACK CONDITION ---
+                // This is where your sophisticated logic goes.
+                // For this example, we'll attack if the trade is over 1000 tokens.
+                if (ethers.formatUnits(amountIn, 18) > 1000) {
+                    // Launch the attack!
+                    // We'll use 0.1 ETH for our front-run.
+                    await triggerSandwichAttack(UNISWAP_V2_ROUTER, victimToken, "0.1");
+                }
+            }
+        }
     } catch (err) {
-      logger.error("Bot error: " + err);
+        // Ignore errors for transactions that disappear from the mempool
     }
-  }, POLL_MS);
-}
-
-main();
+});

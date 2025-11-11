@@ -2,6 +2,7 @@
   "name": "monad-trading-bot-backend",
   "version": "1.0.0",
   "description": "Backend trading bot for Monad Testnet with premium gas + validator tips.",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
@@ -19,8 +20,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.8",
-    "dotenv": "^16.4.5",
-    "ethers": "^6.10.0"
+    "dotenv": "^16.6.1",
+    "ethers": "^6.15.0",
+    "winston": "^3.18.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
