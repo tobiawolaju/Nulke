@@ -20,7 +20,6 @@ export default function TradesTable() {
     <div className="bg-gray-800/30 backdrop-blur-xl p-6 rounded-xl shadow-xl text-white">
       <h2 className="text-2xl font-bold mb-4">Recent Trades</h2>
 
-      {/* Apply the custom-scrollbar class here */}
       <div className="overflow-x-auto custom-scrollbar">
         <table className="w-full text-left text-sm whitespace-nowrap">
           <thead>
@@ -40,7 +39,8 @@ export default function TradesTable() {
                   <img
                     src={trade.token.logo}
                     alt={`${trade.token.name} logo`}
-                    className="w-6 h-6 rounded-full"
+                    // --- THIS IS THE CHANGED LINE ---
+                    className="w-6 h-6 rounded-md" 
                   />
                   {trade.token.name}
                 </td>
